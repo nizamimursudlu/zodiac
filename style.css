@@ -1,0 +1,122 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  /* margin: 0; */
+}
+.hide {
+  display: none;
+}
+#title {
+  margin: 50px;
+}
+h1 {
+  border-left: rgb(73, 68, 68) solid 0.1px;
+  text-align: center;
+}
+h2 {
+  border-left: rgb(73, 68, 68) solid 0.1px;
+  text-align: center;
+}
+h3 {
+  text-align: center;
+  width: 173px;
+  border: rgb(73, 68, 68) solid 0.1px;
+  padding-top: 5.5px;
+  padding-bottom: 5.5px;
+
+  /* padding: 5px; */
+  margin: 0px;
+}
+
+img {
+  width: 150px;
+}
+.sign {
+  font-size: 25px;
+}
+#horoscope-text {
+  color: #fff;
+}
+body {
+  background-color: black;
+  /* text-align: center; */
+  height: 100%;
+}
+.zodiac {
+  padding: 10px;
+  cursor: pointer;
+  width: 163px;
+}
+#container {
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  color: rgb(255, 255, 255);
+  width: 70%;
+  /* font-size: 22px; */
+  /* flex-direction: row; */
+}
+.glow {
+  /* font-size: 40px; */
+  color: #fff;
+  text-align: center;
+  animation: glow 1s ease-in-out infinite alternate;
+}
+p {
+  /* border: rgb(73, 68, 68) solid 0.1px; */
+  margin: 0;
+  padding: 10px;
+  font-size: 16px;
+  float: left;
+  text-align: center;
+}
+#match-lucky {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+#horoscope-result {
+  color: #fff;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -80%);
+  width: 500px;
+  border: 0.5px solid rgb(73, 68, 68);
+}
+#buttons {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, 350%);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 500px;
+}
+button,
+a {
+  font-size: 20px;
+  text-decoration: none;
+  color: white;
+  background-color: black;
+  padding: 5px;
+  border: 0.5px solid rgb(73, 68, 68);
+  border-radius: 5px;
+}
+
+@-webkit-keyframes glow {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073,
+      0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+  }
+
+  to {
+    text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6,
+      0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+  }
+}
