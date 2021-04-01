@@ -1,5 +1,6 @@
 'use strict';
 
+// fetches data from API
 async function fetchData(sign, day) {
   const url = `https://aztro.sameerkumar.website/?sign=${sign}&${day}`;
   const response = await fetch(url, { method: 'POST' });
@@ -7,6 +8,7 @@ async function fetchData(sign, day) {
   return json;
 }
 
+// creates new elements (DOM manipulation)
 function createElement(elementType, parent, text) {
   const element = document.createElement(elementType);
   parent.appendChild(element).textContent = text;
@@ -19,17 +21,8 @@ function displayData(data, sign, day) {
   const horoscopeResult = document.getElementById('horoscope-result');
   horoscopeResult.classList.remove('hide');
   horoscopeResult.textContent = '';
-
   document.getElementById('back-to-menu').classList.remove('hide');
   document.getElementById('horoscope-for-tomorrow').classList.remove('hide');
-  const backToMenu = document.getElementById('back-to-menu');
-  backToMenu.addEventListener('click', () => {
-    document.getElementById('entrance-page').classList.remove('hide');
-    horoscopeResult.classList.add('hide');
-    backToMenu.classList.add('hide');
-    document.getElementById('horoscope-for-tomorrow').classList.add('hide');
-    // horoscopeResult.textContent = '';
-  });
 
   // displays data for today's or tomorrow's horoscope
   const img = createElement('img', horoscopeResult);
@@ -52,6 +45,7 @@ function displayData(data, sign, day) {
     `Lucky Time Of The Day ${data.lucky_time}`,
   );
   createElement('p', horoscopeResult, `${data.description}`);
+  backToMenu(horoscopeResult);
 }
 
 function main() {
@@ -77,6 +71,18 @@ function main() {
   }
 }
 
+// runs if 'Back To Menu' button pressed
+function backToMenu(horoscopeResult) {
+  const backToMenu = document.getElementById('back-to-menu');
+  backToMenu.addEventListener('click', () => {
+    document.getElementById('entrance-page').classList.remove('hide');
+    horoscopeResult.classList.add('hide');
+    backToMenu.classList.add('hide');
+    document.getElementById('horoscope-for-tomorrow').classList.add('hide');
+  });
+}
+
+// runs functions fetchData, displayData and handles errors
 async function fetchDisplayCatch(showError, entrancePage, day, sign) {
   try {
     const data = await fetchData(sign, day);
