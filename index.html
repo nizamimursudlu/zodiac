@@ -4,13 +4,13 @@
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
 
 <body>
-  <div id="show-error" class="hide glow"></div>
+  <div id="show-error" class="glow"></div>
   <div id="entrance-page">
     <h1 id ="title" class="glow">CHOSE YOUR ZODIAC</h1>
     <div id="container" class="glow">
@@ -65,12 +65,16 @@
       </div>
     </div>
   </div>
- <div id="horoscope-result" class="hide"></div> 
-  <div id="buttons" >
-    <button type="submit"id="back-to-menu"  class="hide glow" >Back To Menu </a></button>  
-    <button type="submit" id="horoscope-for-tomorrow" class="hide glow">Horoscope For Tomorrow</button>
+  <div id="horoscope-result-and-buttons" class="hide">
+      <div id="horoscope-result"></div> 
+    <div id="buttons" class="hide">
+      <button type="submit" id="back-to-menu"  class="glow" >Back To Menu</button>  
+      <button type="submit" id="horoscope-for-tomorrow" class="glow">Horoscope For Tomorrow</button>
+    </div>
   </div>
   
+ 
+
   <script src="script.js"></script>
 </body>
 </html>

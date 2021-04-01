@@ -1,0 +1,177 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+
+  <body cz-shortcut-listen="true">
+    <div id="show-error" class="glow"></div>
+    <div id="entrance-page" class="">
+      <h1 id="title" class="glow">CHOSE YOUR ZODIAC</h1>
+      <div id="container" class="glow">
+        <div id="aries" class="sign">
+          <img class="zodiac" src="icons/aries.jpeg" data-value="aries" /><br />
+          Aries<br />
+        </div>
+        <div id="taurus" class="sign">
+          <img
+            class="zodiac"
+            src="icons/taurus.jpeg"
+            data-value="taurus"
+          /><br />
+          Taurus
+        </div>
+        <div id="gemini" class="sign">
+          <img
+            class="zodiac"
+            src="icons/gemini.jpeg"
+            data-value="gemini"
+          /><br />
+          Gemini
+        </div>
+        <div id="cancer" class="sign">
+          <img
+            class="zodiac"
+            src="icons/cancer.jpeg"
+            data-value="cancer"
+          /><br />
+          Cancer
+        </div>
+        <div id="leo" class="sign">
+          <img class="zodiac" src="icons/leo.jpeg" data-value="leo" /><br />
+          Leo
+        </div>
+        <div id="virgo" class="sign">
+          <img class="zodiac" src="icons/virgo.jpeg" data-value="virgo" /><br />
+          Virgo
+        </div>
+        <div id="libra" class="sign">
+          <img class="zodiac" src="icons/libra.jpeg" data-value="libra" /><br />
+          Libra
+        </div>
+        <div id="scorpio" class="sign">
+          <img
+            class="zodiac"
+            src="icons/scorpio.jpeg"
+            data-value="scorpio"
+          /><br />
+          Scorpio
+        </div>
+        <div id="sagittarius" class="sign">
+          <img
+            class="zodiac"
+            src="icons/sagittarius.jpeg"
+            data-value="sagittarius"
+          /><br />
+          Sagittarius
+        </div>
+
+        <div id="capricorn" class="sign">
+          <img
+            class="zodiac"
+            src="icons/capricorn.jpeg"
+            data-value="capricorn"
+          /><br />
+          Capricorn
+        </div>
+        <div id="aquarius" class="sign">
+          <img
+            class="zodiac"
+            src="icons/aquarius.jpeg"
+            data-value="aquarius"
+          /><br />
+          Aquarius
+        </div>
+        <div id="pisces" class="sign">
+          <img
+            class="zodiac"
+            src="icons/pisces.jpeg"
+            data-value="pisces"
+          /><br />
+          Pisces
+        </div>
+      </div>
+    </div>
+    <div id="horoscope-result" class="hide">
+      <img src="icons/virgo.jpeg" style="float: left" />
+      <h1>You are a Virgo</h1>
+      <h2>Tomorrow is - April 1, 2021</h2>
+      <div id="match-lucky">
+        <h3>Tomorrow's Match Gemini</h3>
+        <h3>Tomorrow's Color Silver</h3>
+        <h3>Lucky Number 99</h3>
+        <h3>Lucky Time Of The Day 5pm</h3>
+      </div>
+      <p>
+        Your friends and family are all trying to get you to do various favors
+        for them -- but you've only got so much time in one day! You should try
+        to prioritize, but you still have to say no a lot.
+      </p>
+    </div>
+    <div id="buttons">
+      <button type="submit" id="back-to-menu" class="glow hide">
+        Back To Menu
+      </button>
+      <button type="submit" id="horoscope-for-tomorrow" class="glow hide">
+        Horoscope For Tomorrow
+      </button>
+    </div>
+
+    <script src="script.js"></script>
+    <!-- Code injected by live-server -->
+    <script type="text/javascript">
+      // <![CDATA[  <-- For SVG support
+      if ('WebSocket' in window) {
+        (function () {
+          function refreshCSS() {
+            var sheets = [].slice.call(document.getElementsByTagName('link'));
+            var head = document.getElementsByTagName('head')[0];
+            for (var i = 0; i < sheets.length; ++i) {
+              var elem = sheets[i];
+              var parent = elem.parentElement || head;
+              parent.removeChild(elem);
+              var rel = elem.rel;
+              if (
+                (elem.href && typeof rel != 'string') ||
+                rel.length == 0 ||
+                rel.toLowerCase() == 'stylesheet'
+              ) {
+                var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+                elem.href =
+                  url +
+                  (url.indexOf('?') >= 0 ? '&' : '?') +
+                  '_cacheOverride=' +
+                  new Date().valueOf();
+              }
+              parent.appendChild(elem);
+            }
+          }
+          var protocol =
+            window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+          var address =
+            protocol + window.location.host + window.location.pathname + '/ws';
+          var socket = new WebSocket(address);
+          socket.onmessage = function (msg) {
+            if (msg.data == 'reload') window.location.reload();
+            else if (msg.data == 'refreshcss') refreshCSS();
+          };
+          if (
+            sessionStorage &&
+            !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')
+          ) {
+            console.log('Live reload enabled.');
+            sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+          }
+        })();
+      } else {
+        console.error(
+          'Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.',
+        );
+      }
+      // ]]>
+    </script>
+  </body>
+</html>

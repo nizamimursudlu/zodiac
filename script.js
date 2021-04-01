@@ -1,6 +1,5 @@
 'use strict';
 
-// fetches data from API
 async function fetchData(sign, day) {
   const url = `https://aztro.sameerkumar.website/?sign=${sign}&${day}`;
   const response = await fetch(url, { method: 'POST' });
@@ -8,23 +7,18 @@ async function fetchData(sign, day) {
   return json;
 }
 
-// creates new elements (DOM manipulation)
 function createElement(elementType, parent, text) {
   const element = document.createElement(elementType);
   parent.appendChild(element).textContent = text;
   return element;
 }
 
-function displayData(data, sign, day) {
-  // hides the first page 'menu' and shows buttons 'back to menu' and 'horoscope for tomorrow'
-  document.getElementById('entrance-page').classList.add('hide');
+function displayData(data, sign, day, entrancePage, test) {
+  entrancePage.classList.add('hide');
   const horoscopeResult = document.getElementById('horoscope-result');
-  horoscopeResult.classList.remove('hide');
+  test.classList.remove('hide');
   horoscopeResult.textContent = '';
-  document.getElementById('back-to-menu').classList.remove('hide');
-  document.getElementById('horoscope-for-tomorrow').classList.remove('hide');
 
-  // displays data for today's or tomorrow's horoscope
   const img = createElement('img', horoscopeResult);
   img.src = `icons/${sign}.jpeg`;
   img.style = 'float: left';
@@ -45,52 +39,59 @@ function displayData(data, sign, day) {
     `Lucky Time Of The Day ${data.lucky_time}`,
   );
   createElement('p', horoscopeResult, `${data.description}`);
-  backToMenu(horoscopeResult);
+}
+
+async function fetchAndDisplay(showError, entrancePage, day, sign, test) {
+  try {
+    const data = await fetchData(sign, day);
+    displayData(data, sign, day, entrancePage, test);
+  } catch (error) {
+    entrancePage.classList.add('hide');
+    test.classList.add('hide');
+    showError.textContent = error;
+    console.log(error.stack);
+  }
 }
 
 function main() {
   const zodiacs = document.getElementsByClassName('zodiac');
+  const showError = document.getElementById('show-error');
+  const entrancePage = document.getElementById('entrance-page');
+  const horoscopeResultAndButtons = document.getElementById(
+    'horoscope-result-and-buttons',
+  );
 
-  // when clicked on one of the signs(images) in the menu displays horoscope of that sign for today
-  for (const zodiac of zodiacs) {
-    const showError = document.getElementById('show-error');
-    const entrancePage = document.getElementById('entrance-page');
-    zodiac.addEventListener('click', (event) => {
-      let day = 'Today';
-      const sign = event.target.getAttribute('data-value');
-      fetchDisplayCatch(showError, entrancePage, day, sign);
-
-      // when clicked on button 'horoscope for tomorrow' displays data of the same sign for tomorrow
-      document
-        .getElementById('horoscope-for-tomorrow')
-        .addEventListener('click', () => {
-          day = 'Tomorrow';
-          fetchDisplayCatch(showError, entrancePage, day, sign);
-        });
-    });
-  }
-}
-
-// runs if 'Back To Menu' button pressed
-function backToMenu(horoscopeResult) {
-  const backToMenu = document.getElementById('back-to-menu');
-  backToMenu.addEventListener('click', () => {
-    document.getElementById('entrance-page').classList.remove('hide');
-    horoscopeResult.classList.add('hide');
-    backToMenu.classList.add('hide');
-    document.getElementById('horoscope-for-tomorrow').classList.add('hide');
+  document.getElementById('back-to-menu').addEventListener('click', () => {
+    entrancePage.classList.remove('hide');
+    horoscopeResultAndButtons.classList.add('hide');
   });
-}
 
-// runs functions fetchData, displayData and handles errors
-async function fetchDisplayCatch(showError, entrancePage, day, sign) {
-  try {
-    const data = await fetchData(sign, day);
-    displayData(data, sign, day);
-  } catch (error) {
-    entrancePage.classList.add('hide');
-    showError.classList.remove('hide');
-    showError.textContent = error;
+  let day, sign;
+  document
+    .getElementById('horoscope-for-tomorrow')
+    .addEventListener('click', () => {
+      day = 'Tomorrow';
+      fetchAndDisplay(
+        showError,
+        entrancePage,
+        day,
+        sign,
+        horoscopeResultAndButtons,
+      );
+    });
+
+  for (const zodiac of zodiacs) {
+    zodiac.addEventListener('click', (event) => {
+      day = 'Today';
+      sign = event.target.getAttribute('data-value');
+      fetchAndDisplay(
+        showError,
+        entrancePage,
+        day,
+        sign,
+        horoscopeResultAndButtons,
+      );
+    });
   }
 }
 
