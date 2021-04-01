@@ -108,6 +108,14 @@ a {
   padding: 5px;
   border-radius: 5px;
 }
+#show-error {
+  /* background-color: red;
+  color: white; */
+  margin: 0, auto;
+  padding: 5px;
+  font-size: 30px;
+  text-align: center;
+}
 
 @-webkit-keyframes glow {
   from {
