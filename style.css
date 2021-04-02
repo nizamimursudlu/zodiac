@@ -4,8 +4,7 @@
   box-sizing: border-box;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
-
-section {
+#general {
   position: relative;
   width: 100%;
   height: 100vh;
@@ -15,7 +14,7 @@ section {
   justify-content: center;
   align-items: center;
 }
-section .star {
+#general .star {
   position: absolute;
   top: 0;
   left: 0;
@@ -24,35 +23,35 @@ section .star {
   pointer-events: none;
   animation: animate 8s ease-in-out infinite, backgroundmove 16s linear infinite;
 }
-section .star.star1 {
+#general .star.star1 {
   animation-delay: 0s;
   background: url(stars/star1.png);
 }
-section .star.star2 {
+#general .star.star2 {
   animation-delay: -1s;
   background: url(stars/star2.png);
 }
-section .star.star3 {
+#general .star.star3 {
   animation-delay: -2s;
   background: url(stars/star3.png);
 }
-section .star.star4 {
+#general .star.star4 {
   animation-delay: -3s;
   background: url(stars/star4.png);
 }
-section .star.star5 {
+#general .star.star5 {
   animation-delay: -4s;
   background: url(stars/star5.png);
 }
-section .star.star6 {
+#general .star.star6 {
   animation-delay: -5s;
   background: url(stars/star6.png);
 }
-section .star.star7 {
+#general .star.star7 {
   animation-delay: -6s;
   background: url(stars/star7.png);
 }
-section .star.star8 {
+#general .star.star8 {
   animation-delay: -7s;
   background: url(stars/star8.png);
 }
@@ -86,17 +85,11 @@ section .star.star8 {
   display: none;
 }
 #title {
-  /* margin: 20px; */
   margin-top: -40px;
   font-size: 30px;
 }
-h1 {
-  border-left: rgb(73, 68, 68) solid 0.1px;
-  text-align: center;
-  margin: 20px;
-}
+h1,
 h2 {
-  border-left: rgb(73, 68, 68) solid 0.1px;
   text-align: center;
   margin: 20px;
 }
@@ -110,15 +103,11 @@ h3 {
   padding: 5px;
   margin: 0px;
 }
-
 img {
   width: 150px;
 }
 .sign {
   font-size: 25px;
-}
-#horoscope-text {
-  color: #fff;
 }
 body {
   background-color: black;
@@ -158,7 +147,6 @@ p {
   flex-direction: row;
   justify-content: space-around;
 }
-
 #horoscope-result {
   color: #fff;
   position: absolute;
