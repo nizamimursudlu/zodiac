@@ -6,19 +6,14 @@ function createElement(elementType, parent, text) {
   return element;
 }
 
-async function fetchData(sign, day) {
-  const url = `https://aztro.sameerkumar.website/?sign=${sign}&${day}`;
-  const response = await fetch(url, { method: 'POST' });
-  const json = await response.json();
-  return json;
-}
-
 function displayData(data, sign, day, entrancePage, horoscopeAndButtons) {
+  // hides menu and shows horoscope results
   entrancePage.classList.add('hide');
   const horoscopeResult = document.getElementById('horoscope-result');
   horoscopeAndButtons.classList.remove('hide');
+
+  // DOM
   horoscopeResult.textContent = '';
-  // test;
   const img = createElement('img', horoscopeResult);
   img.src = `icons/${sign}.jpeg`;
   img.style = 'float: left';
@@ -41,6 +36,15 @@ function displayData(data, sign, day, entrancePage, horoscopeAndButtons) {
   createElement('p', horoscopeResult, `${data.description}`);
 }
 
+async function fetchData(sign, day) {
+  const url = `https://aztro.sameerkumar.website/?sign=${sign}&${day}`;
+  const response = await fetch(url, { method: 'POST' });
+  const json = await response.json();
+  return json;
+}
+
+// calls functions fetchData and displayData
+// handle errors show the in the DOM
 async function fetchAndDisplay(
   showError,
   entrancePage,
@@ -54,8 +58,7 @@ async function fetchAndDisplay(
   } catch (error) {
     entrancePage.classList.add('hide');
     horoscopeAndButtons.classList.add('hide');
-    showError.textContent = 'Something went wrong, they again later...';
-    console.log(error.stack);
+    showError.textContent = 'Something went wrong, please try later!';
   }
 }
 
@@ -66,6 +69,8 @@ function main() {
   const horoscopeAndButtons = document.getElementById('horoscope-and-buttons');
 
   let day, sign;
+
+  // shows horoscope for tomorrow
   document
     .getElementById('horoscope-for-tomorrow')
     .addEventListener('click', () => {
@@ -73,6 +78,7 @@ function main() {
       fetchAndDisplay(showError, entrancePage, day, sign, horoscopeAndButtons);
     });
 
+  // show horoscope for today
   for (const zodiac of zodiacs) {
     zodiac.addEventListener('click', (event) => {
       day = 'Today';
