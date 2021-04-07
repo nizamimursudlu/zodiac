@@ -37,7 +37,7 @@ function displayData(data, sign, day, entrancePage, horoscopeAndButtons) {
 }
 
 async function fetchData(sign, day) {
-  const url = `https://aztro.sameerkumar.website/?sign=${sign}&${day}`;
+  const url = `https://aztro.sameerkumar.website/?sign=${sign}&day=${day}`;
   const response = await fetch(url, { method: 'POST' });
   const json = await response.json();
   return json;
@@ -45,17 +45,12 @@ async function fetchData(sign, day) {
 
 // calls functions fetchData and displayData
 // handle errors show the in the DOM
-async function fetchAndDisplay(
-  showError,
-  entrancePage,
-  day,
-  sign,
-  horoscopeAndButtons,
-) {
+async function fetchAndDisplay(entrancePage, day, sign, horoscopeAndButtons) {
   try {
     const data = await fetchData(sign, day);
     displayData(data, sign, day, entrancePage, horoscopeAndButtons);
   } catch (error) {
+    const showError = document.getElementById('show-error');
     entrancePage.classList.add('hide');
     horoscopeAndButtons.classList.add('hide');
     showError.textContent = 'Something went wrong, please try later!';
@@ -64,7 +59,6 @@ async function fetchAndDisplay(
 
 function main() {
   const zodiacs = document.getElementsByClassName('zodiac');
-  const showError = document.getElementById('show-error');
   const entrancePage = document.getElementById('entrance-page');
   const horoscopeAndButtons = document.getElementById('horoscope-and-buttons');
 
@@ -75,7 +69,7 @@ function main() {
     .getElementById('horoscope-for-tomorrow')
     .addEventListener('click', () => {
       day = 'Tomorrow';
-      fetchAndDisplay(showError, entrancePage, day, sign, horoscopeAndButtons);
+      fetchAndDisplay(entrancePage, day, sign, horoscopeAndButtons);
     });
 
   // show horoscope for today
@@ -83,7 +77,7 @@ function main() {
     zodiac.addEventListener('click', (event) => {
       day = 'Today';
       sign = event.target.getAttribute('data-value');
-      fetchAndDisplay(showError, entrancePage, day, sign, horoscopeAndButtons);
+      fetchAndDisplay(entrancePage, day, sign, horoscopeAndButtons);
     });
   }
 
