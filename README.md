@@ -1,9 +1,9 @@
 # zodiac
 
-Does the project only have to be a quiz to answer to the requirements of the browser module?
+SPA project
 
-Or this project does it as well?
+Contains of three files : HTML, CSS, JS
 
-I will some write better ccs if you confirm it
+Interacts with the user.
 
-If not I will do a quiz
+Depending on users choice fetches different data from the API and displays it on the screen

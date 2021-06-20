@@ -7,12 +7,10 @@ function createElement(elementType, parent, text) {
 }
 
 function displayData(data, sign, day, entrancePage, horoscopeAndButtons) {
-  // hides menu and shows horoscope results
   entrancePage.classList.add('hide');
   const horoscopeResult = document.getElementById('horoscope-result');
   horoscopeAndButtons.classList.remove('hide');
 
-  // DOM
   horoscopeResult.textContent = '';
   const img = createElement('img', horoscopeResult);
   img.src = `icons/${sign}.jpeg`;
@@ -43,8 +41,6 @@ async function fetchData(sign, day) {
   return json;
 }
 
-// calls functions fetchData and displayData
-// handle errors show the in the DOM
 async function fetchAndDisplay(entrancePage, day, sign, horoscopeAndButtons) {
   try {
     const data = await fetchData(sign, day);
@@ -64,7 +60,6 @@ function main() {
 
   let day, sign;
 
-  // shows horoscope for tomorrow
   document
     .getElementById('horoscope-for-tomorrow')
     .addEventListener('click', () => {
@@ -72,7 +67,6 @@ function main() {
       fetchAndDisplay(entrancePage, day, sign, horoscopeAndButtons);
     });
 
-  // show horoscope for today
   for (const zodiac of zodiacs) {
     zodiac.addEventListener('click', (event) => {
       day = 'Today';
